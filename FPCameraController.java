@@ -6,11 +6,12 @@ import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 import static org.lwjgl.opengl.GL11.*;
 import org.lwjgl.Sys;
+import org.lwjgl.util.glu.GLU;
 
 
 public class FPCameraController {
-	private Vector3f position = null;	
-	private Vector3f lPosition = null;	
+	private Vector3f position = null;
+	private Vector3f lPosition = null;
 	private float yaw = 0.0f;
 	private float pitch = 0.0f;
 	private Vector3Float me;
@@ -23,10 +24,10 @@ public class FPCameraController {
 		lPosition.z = 0f;
 	}
 	public void yaw(float amount) {
-		yaw += amount;
+		this.yaw += amount;
 	}
 	public void pitch(float amount) {
-		pitch -= amount;
+		this.pitch -= amount;
 	}
 	public void walkForward(float distance) {
 		float xOffset = distance * (float)Math.sin(Math.toRadians(yaw));
@@ -78,8 +79,14 @@ public class FPCameraController {
 			time = Sys.getTime();
 			lastTime = time;
 
+			//Camera view controlled here via mouse.
 			dx = Mouse.getDX();
 			dy = Mouse.getDY();
+			System.out.println("DX " + dx);
+			System.out.println("DY" + dy);
+
+			camera.yaw(dx * mouseSensitivity);
+			camera.pitch(dy * mouseSensitivity);
 
 			if (Keyboard.isKeyDown(Keyboard.KEY_W)) {
 				camera.walkForward(movementSpeed);
@@ -96,7 +103,7 @@ public class FPCameraController {
 			if (Keyboard.isKeyDown(Keyboard.KEY_SPACE)) {
 				camera.moveUp(movementSpeed);
 			}
-			if (Keyboard.isKeyDown(Keyboard.KEY_E)) {
+			if (Keyboard.isKeyDown(Keyboard.KEY_LCONTROL)) {
 				camera.moveDown(movementSpeed);
 			}
 			glLoadIdentity();
@@ -111,51 +118,48 @@ public class FPCameraController {
 	private void render() {
 		try {
 				glBegin(GL_QUADS);
-				glColor3f(1.0f,0.0f,0.0f);
-				glVertex3f(1.0f, 1.0f, -1.0f);
-				glVertex3f(-1.0f, 1.0f, -1.0f);
-				glVertex3f(-1.0f, 1.0f, 1.0f);
-				glVertex3f(1.0f, 1.0f, 1.0f);
-				glEnd();
+					//Top
+					glColor3f(0.0f,0.0f,0.0f);
+					glVertex3f(1.0f, 1.0f, -1.0f);
+					glVertex3f(-1.0f, 1.0f, -1.0f);
+					glVertex3f(-1.0f, 1.0f, 1.0f);
+					glVertex3f(1.0f, 1.0f, 1.0f);
 
-				glColor3f(1.0f,1.0f,0.0f);
-				glBegin(GL_QUADS);
-				glVertex3f(1.0f, -1.0f, 1.0f);
-				glVertex3f(-1.0f, -1.0f, 1.0f);
-				glVertex3f(-1.0f, -1.0f, -1.0f);
-				glVertex3f(1.0f, -1.0f, -1.0f);
-				glEnd();
+					//Bottom
+					glColor3f(0.0f,0.0f,1.0f);
+					glVertex3f(1.0f, -1.0f, 1.0f);
+					glVertex3f(-1.0f, -1.0f, 1.0f);
+					glVertex3f(-1.0f, -1.0f, -1.0f);
+					glVertex3f(1.0f, -1.0f, -1.0f);
 
-				glColor3f(1.0f,1.0f,1.0f);
-				glBegin(GL_QUADS);
-				glVertex3f(1.0f, 1.0f, 1.0f);
-				glVertex3f(-1.0f, 1.0f, 1.0f);
-				glVertex3f(-1.0f, -1.0f, 1.0f);
-				glVertex3f(1.0f, -1.0f, 1.0f);
-				glEnd();
+					//Front
+					glColor3f(1.0f,1.0f,1.0f);
+					glVertex3f(1.0f, 1.0f, 1.0f);
+					glVertex3f(-1.0f, 1.0f, 1.0f);
+					glVertex3f(-1.0f, -1.0f, 1.0f);
+					glVertex3f(1.0f, -1.0f, 1.0f);
 
-				glColor3f(0.0f,0.0f,1.0f);
-				glBegin(GL_QUADS);
-				glVertex3f(1.0f, -1.0f, -1.0f);
-				glVertex3f(-1.0f, -1.0f, -1.0f);
-				glVertex3f(-1.0f, 1.0f, -1.0f);
-				glVertex3f(1.0f, 1.0f, -1.0f);
-				glEnd();
+					//Back
+					glColor3f(0.0f,1.0f,1.0f);
+					glVertex3f(1.0f, -1.0f, -1.0f);
+					glVertex3f(-1.0f, -1.0f, -1.0f);
+					glVertex3f(-1.0f, 1.0f, -1.0f);
+					glVertex3f(1.0f, 1.0f, -1.0f);
 
-				glColor3f(0.0f,1.0f,1.0f);
-				glBegin(GL_QUADS);
-				glVertex3f(-1.0f, 1.0f, 1.0f);
-				glVertex3f(-1.0f, 1.0f, -1.0f);
-				glVertex3f(-1.0f, -1.0f, -1.0f);
-				glVertex3f(-1.0f, -1.0f, 1.0f);
-				glEnd();
+					//Left
+					glColor3f(1.0f,0.0f,0.0f);
+					glVertex3f(-1.0f, 1.0f, 1.0f);
+					glVertex3f(-1.0f, 1.0f, -1.0f);
+					glVertex3f(-1.0f, -1.0f, -1.0f);
+					glVertex3f(-1.0f, -1.0f, 1.0f);
 
-				glColor3f(1.0f,1.0f,0.0f);
-				glBegin(GL_QUADS);
-				glVertex3f(1.0f, 1.0f, -1.0f);
-				glVertex3f(1.0f, 1.0f, 1.0f);
-				glVertex3f(1.0f, -1.0f, 1.0f);
-				glVertex3f(1.0f, -1.0f, -1.0f);
+					//Right
+					glColor3f(1.0f,0.0f,1.0f);
+					glVertex3f(1.0f, 1.0f, -1.0f);
+					glVertex3f(1.0f, 1.0f, 1.0f);
+					glVertex3f(1.0f, -1.0f, 1.0f);
+					glVertex3f(1.0f, -1.0f, -1.0f);
+
 				glEnd();
 
 		}catch(Exception e) {
@@ -163,4 +167,3 @@ public class FPCameraController {
 		}
 	}
 }
-

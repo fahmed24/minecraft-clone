@@ -32,11 +32,11 @@ public class MineCraftClone {
                 break;
             }
         }
-	
+
         Display.setDisplayMode(displayMode);
         Display.setTitle("MineCraftClone");
-        Display.create();    }
-
+        Display.create();
+    }
 
     private void initGL() {
         glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
@@ -46,7 +46,7 @@ public class MineCraftClone {
 
         glMatrixMode(GL_MODELVIEW);
         glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
-        
+
     }
 
     public static void main(String[] args) {
