@@ -37,8 +37,8 @@ public class FPCameraController {
 	public void walkBackwards(float distance) {
 		float xOffset = distance * (float)Math.sin(Math.toRadians(yaw));
 		float zOffset = distance * (float)Math.cos(Math.toRadians(yaw));
-		position.x -= xOffset;
-		position.z += zOffset;
+		position.x += xOffset;
+		position.z -= zOffset;
 	}
 	public void strafeLeft(float distance) {
 		float xOffset = distance * (float)Math.sin(Math.toRadians(yaw-90));
@@ -71,7 +71,7 @@ public class FPCameraController {
 		float lastTime = 0.0f;
 		long time = 0;
 		float mouseSensitivity = 0.09f;
-		float movementSpeed = .35f;
+		float movementSpeed = .10f;
 
 		Mouse.setGrabbed(true);
 		while (!Display.isCloseRequested() && !Keyboard.isKeyDown(Keyboard.KEY_ESCAPE)) {
@@ -110,47 +110,50 @@ public class FPCameraController {
 	}
 	private void render() {
 		try {
-			glBegin(GL_QUADS);
-				//glColor3f(1.0f,0.0f,1.0f);
-			
-				glBegin(GL_LINE_LOOP);
+				glBegin(GL_QUADS);
+				glColor3f(1.0f,0.0f,0.0f);
 				glVertex3f(1.0f, 1.0f, -1.0f);
-				glVertex3f(-1.0f, 1.0f, 1.0f);
+				glVertex3f(-1.0f, 1.0f, -1.0f);
 				glVertex3f(-1.0f, 1.0f, 1.0f);
 				glVertex3f(1.0f, 1.0f, 1.0f);
 				glEnd();
 
-				glBegin(GL_LINE_LOOP);
+				glColor3f(1.0f,1.0f,0.0f);
+				glBegin(GL_QUADS);
 				glVertex3f(1.0f, -1.0f, 1.0f);
 				glVertex3f(-1.0f, -1.0f, 1.0f);
 				glVertex3f(-1.0f, -1.0f, -1.0f);
 				glVertex3f(1.0f, -1.0f, -1.0f);
 				glEnd();
 
-				glBegin(GL_LINE_LOOP);
+				glColor3f(1.0f,1.0f,1.0f);
+				glBegin(GL_QUADS);
 				glVertex3f(1.0f, 1.0f, 1.0f);
 				glVertex3f(-1.0f, 1.0f, 1.0f);
 				glVertex3f(-1.0f, -1.0f, 1.0f);
 				glVertex3f(1.0f, -1.0f, 1.0f);
 				glEnd();
 
-				glBegin(GL_LINE_LOOP);
+				glColor3f(0.0f,0.0f,1.0f);
+				glBegin(GL_QUADS);
 				glVertex3f(1.0f, -1.0f, -1.0f);
 				glVertex3f(-1.0f, -1.0f, -1.0f);
 				glVertex3f(-1.0f, 1.0f, -1.0f);
 				glVertex3f(1.0f, 1.0f, -1.0f);
 				glEnd();
 
-				glBegin(GL_LINE_LOOP);
+				glColor3f(0.0f,1.0f,1.0f);
+				glBegin(GL_QUADS);
 				glVertex3f(-1.0f, 1.0f, 1.0f);
 				glVertex3f(-1.0f, 1.0f, -1.0f);
 				glVertex3f(-1.0f, -1.0f, -1.0f);
 				glVertex3f(-1.0f, -1.0f, 1.0f);
 				glEnd();
 
-				glBegin(GL_LINE_LOOP);
+				glColor3f(1.0f,1.0f,0.0f);
+				glBegin(GL_QUADS);
 				glVertex3f(1.0f, 1.0f, -1.0f);
-				glVertex3f(1.0f, 1.0f, -1.0f);
+				glVertex3f(1.0f, 1.0f, 1.0f);
 				glVertex3f(1.0f, -1.0f, 1.0f);
 				glVertex3f(1.0f, -1.0f, -1.0f);
 				glEnd();

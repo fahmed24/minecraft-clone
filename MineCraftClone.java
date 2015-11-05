@@ -25,12 +25,14 @@ public class MineCraftClone {
     private void createWindow() throws Exception {
         Display.setFullscreen(false);
         DisplayMode d[] = Display.getAvailableDisplayModes();
+
         for (int i = 0; i < d.length; i++) {
             if (d[i].getWidth() == 640 && d[i].getHeight() == 480 && d[i].getBitsPerPixel() == 32) {
                 displayMode = d[i];
                 break;
             }
         }
+	
         Display.setDisplayMode(displayMode);
         Display.setTitle("MineCraftClone");
         Display.create();    }
@@ -40,7 +42,7 @@ public class MineCraftClone {
         glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
         glMatrixMode(GL_PROJECTION);
         glLoadIdentity();
-        GLU.gluPerspective(500.0f, (float) displayMode.getWidth() / (float) displayMode.getHeight(), 0.1f, 500.0f);
+        GLU.gluPerspective(100.0f, (float) displayMode.getWidth() / (float) displayMode.getHeight(), 0.1f, 100.0f);
 
         glMatrixMode(GL_MODELVIEW);
         glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
