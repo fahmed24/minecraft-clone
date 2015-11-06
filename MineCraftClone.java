@@ -1,3 +1,11 @@
+/*
+File: FPCameraController.java, MineCraftClone.java, Vector3Float.java
+Author: Sharat V. , Maheen Iqbal, Fahad Ahmed
+Class: CS 445
+
+Assignment: Final Project Checkpoint 1
+Date Last Mod: 11/05/15
+*/
 package minecraftclone;
 import org.lwjgl.opengl.DisplayMode;
 import static org.lwjgl.opengl.GL11.*;
@@ -43,7 +51,7 @@ public class MineCraftClone {
         glMatrixMode(GL_PROJECTION);
         glLoadIdentity();
         GLU.gluPerspective(100.0f, (float) displayMode.getWidth() / (float) displayMode.getHeight(), 0.1f, 100.0f);
-
+				glEnable(GL_DEPTH_TEST);
         glMatrixMode(GL_MODELVIEW);
         glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
 

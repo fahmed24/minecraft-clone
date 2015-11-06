@@ -1,3 +1,11 @@
+/*
+File: FPCameraController.java, MineCraftClone.java, Vector3Float.java
+Author: Sharat V. , Maheen Iqbal, Fahad Ahmed
+Class: CS 445
+
+Assignment: Final Project Checkpoint 1
+Date Last Mod: 11/05/15
+*/
 package minecraftclone;
 
 import org.lwjgl.util.vector.Vector3f;
@@ -82,9 +90,6 @@ public class FPCameraController {
 			//Camera view controlled here via mouse.
 			dx = Mouse.getDX();
 			dy = Mouse.getDY();
-			System.out.println("DX " + dx);
-			System.out.println("DY" + dy);
-
 			camera.yaw(dx * mouseSensitivity);
 			camera.pitch(dy * mouseSensitivity);
 
@@ -119,46 +124,46 @@ public class FPCameraController {
 		try {
 				glBegin(GL_QUADS);
 					//Top
-					glColor3f(0.0f,0.0f,0.0f);
-					glVertex3f(1.0f, 1.0f, -1.0f);
-					glVertex3f(-1.0f, 1.0f, -1.0f);
-					glVertex3f(-1.0f, 1.0f, 1.0f);
-					glVertex3f(1.0f, 1.0f, 1.0f);
+					glColor3f(0.0f,1.0f,0.5f);
+					glVertex3f(2.0f, 2.0f, -2.0f);
+					glVertex3f(-2.0f, 2.0f, -2.0f);
+					glVertex3f(-2.0f, 2.0f, 2.0f);
+					glVertex3f(2.0f, 2.0f, 2.0f);
 
 					//Bottom
 					glColor3f(0.0f,0.0f,1.0f);
-					glVertex3f(1.0f, -1.0f, 1.0f);
-					glVertex3f(-1.0f, -1.0f, 1.0f);
-					glVertex3f(-1.0f, -1.0f, -1.0f);
-					glVertex3f(1.0f, -1.0f, -1.0f);
+					glVertex3f(2.0f, -2.0f, 2.0f);
+					glVertex3f(-2.0f, -2.0f, 2.0f);
+					glVertex3f(-2.0f, -2.0f, -2.0f);
+					glVertex3f(2.0f, -2.0f, -2.0f);
 
 					//Front
 					glColor3f(1.0f,1.0f,1.0f);
-					glVertex3f(1.0f, 1.0f, 1.0f);
-					glVertex3f(-1.0f, 1.0f, 1.0f);
-					glVertex3f(-1.0f, -1.0f, 1.0f);
-					glVertex3f(1.0f, -1.0f, 1.0f);
+					glVertex3f(2.0f, 2.0f, 2.0f);
+					glVertex3f(-2.0f, 2.0f, 2.0f);
+					glVertex3f(-2.0f, -2.0f, 2.0f);
+					glVertex3f(2.0f, -2.0f, 2.0f);
 
 					//Back
 					glColor3f(0.0f,1.0f,1.0f);
-					glVertex3f(1.0f, -1.0f, -1.0f);
-					glVertex3f(-1.0f, -1.0f, -1.0f);
-					glVertex3f(-1.0f, 1.0f, -1.0f);
-					glVertex3f(1.0f, 1.0f, -1.0f);
+					glVertex3f(2.0f, -2.0f, -2.0f);
+					glVertex3f(-2.0f, -2.0f, -2.0f);
+					glVertex3f(-2.0f, 2.0f, -2.0f);
+					glVertex3f(2.0f, 2.0f, -2.0f);
 
 					//Left
 					glColor3f(1.0f,0.0f,0.0f);
-					glVertex3f(-1.0f, 1.0f, 1.0f);
-					glVertex3f(-1.0f, 1.0f, -1.0f);
-					glVertex3f(-1.0f, -1.0f, -1.0f);
-					glVertex3f(-1.0f, -1.0f, 1.0f);
+					glVertex3f(-2.0f, 2.0f, 2.0f);
+					glVertex3f(-2.0f, 2.0f, -2.0f);
+					glVertex3f(-2.0f, -2.0f, -2.0f);
+					glVertex3f(-2.0f, -2.0f, 2.0f);
 
 					//Right
 					glColor3f(1.0f,0.0f,1.0f);
-					glVertex3f(1.0f, 1.0f, -1.0f);
-					glVertex3f(1.0f, 1.0f, 1.0f);
-					glVertex3f(1.0f, -1.0f, 1.0f);
-					glVertex3f(1.0f, -1.0f, -1.0f);
+					glVertex3f(2.0f, 2.0f, -2.0f);
+					glVertex3f(2.0f, 2.0f, 2.0f);
+					glVertex3f(2.0f, -2.0f, 2.0f);
+					glVertex3f(2.0f, -2.0f, -2.0f);
 
 				glEnd();
 
