@@ -15,15 +15,17 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.util.glu.GLU;
 
+
 public class MineCraftClone {
 
-    private FPCameraController fp = new FPCameraController(0f, 0f, 0f);
+    private FPCameraController fp;
     private DisplayMode displayMode;
 
     public void start() {
         try {
             createWindow();
             initGL();
+            fp = new FPCameraController(0f, 0f, 0f);
             fp.gameLoop();//render();
         } catch (Exception e) {
             e.printStackTrace();
@@ -53,8 +55,12 @@ public class MineCraftClone {
         GLU.gluPerspective(100.0f, (float) displayMode.getWidth() / (float) displayMode.getHeight(), 0.1f, 100.0f);
 				glEnable(GL_DEPTH_TEST);
         glMatrixMode(GL_MODELVIEW);
-        glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
-
+        glEnableClientState(GL_VERTEX_ARRAY);
+        glEnableClientState(GL_COLOR_ARRAY);
+        glEnable(GL_DEPTH_TEST);
+        glEnable(GL_TEXTURE_2D);
+        glEnableClientState (GL_TEXTURE_COORD_ARRAY);
+        glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);        
     }
 
     public static void main(String[] args) {
