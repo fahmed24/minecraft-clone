@@ -1,7 +1,11 @@
 /*
-* To change this license header, choose License Headers in Project Properties.
-* To change this template file, choose Tools | Templates
-* and open the template in the editor.
+File: FPCameraController.java, MineCraftClone.java, Vector3Float.java
+Block.java, Chunk.java, SimplexNoise.java, SimplexNoise_octave.java
+Author: Sharat V. , Maheen Iqbal, Fahad Ahmed
+Class: CS 445
+
+Assignment: Final Project Checkpoint 2
+Date Last Mod: 11/19/15
 */
 package minecraftclone;
 
