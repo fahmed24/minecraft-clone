@@ -1,10 +1,11 @@
 /*
 File: FPCameraController.java, MineCraftClone.java, Vector3Float.java
+Block.java, Chunk.java, SimplexNoise.java, SimplexNoise_octave.java
 Author: Sharat V. , Maheen Iqbal, Fahad Ahmed
 Class: CS 445
 
-Assignment: Final Project Checkpoint 1
-Date Last Mod: 11/05/15
+Assignment: Final Project Checkpoint 2
+Date Last Mod: 11/19/15
 */
 package minecraftclone;
 
