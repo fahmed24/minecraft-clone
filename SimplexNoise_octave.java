@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.Random;
 import javax.imageio.ImageIO;
 
+
 /*
 * A speed-improved simplex noise algorithm for 2D, 3D and 4D in Java.
 *

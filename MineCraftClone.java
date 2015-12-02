@@ -1,72 +1,97 @@
 /*
-File: FPCameraController.java, MineCraftClone.java, Vector3Float.java
-Block.java, Chunk.java, SimplexNoise.java, SimplexNoise_octave.java
-Author: Sharat V. , Maheen Iqbal, Fahad Ahmed
-Class: CS 445
-
-Assignment: Final Project Checkpoint 2
-Date Last Mod: 11/19/15
+Maheen Iqbal, Sharat V., Fahad Ahmed
+CS 445
+Final Project
 */
 package minecraftclone;
 
-import org.lwjgl.opengl.DisplayMode;
-import static org.lwjgl.opengl.GL11.*;
-import java.util.Scanner;
-import java.io.*;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.Display;
+import org.lwjgl.opengl.DisplayMode;
+import static org.lwjgl.opengl.GL11.*;
 import org.lwjgl.util.glu.GLU;
+import java.nio.FloatBuffer;
+import org.lwjgl.BufferUtils;
 
-public class MineCraftClone {
 
+public class MineCraftClone
+{
   private FPCameraController fp;
   private DisplayMode displayMode;
+  private FloatBuffer lightPosition;
+  private FloatBuffer whiteLight;
 
-  public void start() {
-    try {
+  public void start()
+  {
+    try
+    {
       createWindow();
       initGL();
       fp = new FPCameraController(0f, 0f, 0f);
-      fp.gameLoop();//render();
-    } catch (Exception e) {
+      fp.gameLoop();
+    }
+    catch(Exception e)
+    {
       e.printStackTrace();
     }
   }
 
-  private void createWindow() throws Exception {
+  public void createWindow() throws Exception
+  {
     Display.setFullscreen(false);
-    DisplayMode d[] = Display.getAvailableDisplayModes();
-
-    for (int i = 0; i < d.length; i++) {
-      if (d[i].getWidth() == 1280  && d[i].getHeight() == 720 && d[i].getBitsPerPixel() == 32) {
+    DisplayMode[] d = Display.getAvailableDisplayModes();
+    for (int i = 0; i < d.length; ++i)
+    {
+      if (d[i].getWidth() == 640 && d[i].getHeight() == 480
+      && d[i].getBitsPerPixel() == 32)
+      {
         displayMode = d[i];
         break;
       }
     }
-
     Display.setDisplayMode(displayMode);
-    Display.setTitle("MineCraftClone");
+    Display.setTitle("Mine Craft Clone");
     Display.create();
   }
 
-  private void initGL() {
-    glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+  public void initGL()
+  {
+    glClearColor(0.53f, 0.80f, 0.92f, 0.0f);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    GLU.gluPerspective(100.0f, (float) displayMode.getWidth() / (float) displayMode.getHeight(), 0.1f, 100.0f);
-    glEnable(GL_DEPTH_TEST);
+    GLU.gluPerspective(100.0f, (float)displayMode.getWidth()/(float)displayMode.getHeight(), 0.1f, 300.0f);
     glMatrixMode(GL_MODELVIEW);
+    glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
+
     glEnableClientState(GL_VERTEX_ARRAY);
     glEnableClientState(GL_COLOR_ARRAY);
     glEnable(GL_DEPTH_TEST);
+
     glEnable(GL_TEXTURE_2D);
-    glEnableClientState (GL_TEXTURE_COORD_ARRAY);
-    glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
+    glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+
+    initLightArrays();
+    glLight(GL_LIGHT0, GL_POSITION, lightPosition);
+    glLight(GL_LIGHT0, GL_SPECULAR, whiteLight);
+    glLight(GL_LIGHT0, GL_DIFFUSE, whiteLight);
+    glLight(GL_LIGHT0, GL_AMBIENT, whiteLight);
+
+    glEnable(GL_LIGHTING);
+    glEnable(GL_LIGHT0);
   }
 
-  public static void main(String[] args) {
+
+  private void initLightArrays() {
+    lightPosition = BufferUtils.createFloatBuffer(4);
+    lightPosition.put(0.0f).put(0.0f).put(0.0f).put(1.0f).flip();
+
+    whiteLight = BufferUtils.createFloatBuffer(4);
+    whiteLight.put(2.0f).put(2.0f).put(2.0f).put(0.0f).flip();
+  }
+
+  public static void main(String[] args)
+  {
     MineCraftClone mcc = new MineCraftClone();
     mcc.start();
   }
-
 }
